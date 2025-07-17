@@ -1,7 +1,7 @@
 import {z} from "zod";
 
 export const loginSchema = z.object({
-    username: z.email().trim(),
+    username: z.email(),
     password: z.string()
         .min(8, "Password must be at least 8 characters long, include an upper/lowercase letter, a number and a special character").trim()
 })
@@ -16,22 +16,16 @@ export type LoginResponse = {
     exp: number
 }
 
-const baseUrl = import.meta.env.VITE_API_URL;
-
 export async function login({
                                 username,
                                 password
                             }: LoginFields): Promise<LoginResponse> {
 
-    const form = new URLSearchParams();
-    form.append("username", username);
-    form.append("password", password);
-
-    const res = await fetch(baseUrl + "/auth/login",
+    const res = await fetch("http://localhost:8080/api/auth/login",
         {
             method: "POST",
-            headers: {"Content-Type": "application/x-www-form-urlencoded"},
-            body: form.toString()
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ username: username, password: password })
         });
     if (!res.ok) {
         let detail = "Login Failed";

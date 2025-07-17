@@ -1,6 +1,6 @@
 // src/components/layout/Header.tsx
 
-import { Link } from "react-router-dom"
+import {Link} from "react-router-dom"
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button"
 import {
@@ -13,10 +13,10 @@ import { Menu } from "lucide-react"
 import logo from "../assets/logo.png"
 
 const Header = () => {
-    const { isAuthenticated, role, logoutUser } = useAuth()
+    const { isAuthenticated, role, logoutUser } = useAuth();
 
     return (
-        <header className="w-full bg-[#A4BBC0] fixed shadow-md px-4 py-1">
+        <header className="w-full bg-[#A4BBC0] fixed shadow-md px-4">
             <div className="max-w-7xl mx-auto flex items-center justify-between">
                 {/* Logo */}
                 <Link to="/" className="flex items-center gap-2">
@@ -34,16 +34,16 @@ const Header = () => {
 
                     {isAuthenticated && role === "USER" && (
                         <>
-                            <Link to="/dashboard" className="text-sm font-medium">Dashboard</Link>
-                            <Link to="/events" className="text-sm font-medium">Events</Link>
-                            <Link to="/tickets" className="text-sm font-medium">My Tickets</Link>
+                            <Link to="/dashboard" className="text-sm font-medium hover:underline hover:underline-offset-4">Dashboard</Link>
+                            <Link to="/events" className="hover:underline hover:underline-offset-4 text-sm font-medium">Events</Link>
+                            <Link to="/tickets" className="text-sm font-medium hover:underline hover:underline-offset-4">My Tickets</Link>
                             <Button variant="outline" size="sm" onClick={logoutUser}>Logout</Button>
                         </>
                     )}
 
                     {isAuthenticated && role === "ADMIN" && (
                         <>
-                            <Link to="/admin/dashboard" className="text-sm font-medium">Admin</Link>
+                            <Link to="/admin/dashboard" className="text-sm font-medium">Admin Panel</Link>
                             <Link to="/admin/events" className="text-sm font-medium">Events</Link>
                             <Link to="/admin/users" className="text-sm font-medium">Users</Link>
                             <Link to="/admin/tickets" className="text-sm font-medium">Tickets</Link>

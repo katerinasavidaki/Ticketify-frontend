@@ -9,3 +9,7 @@ export function useAuth() {
     }
     return context;
 }
+
+export const getTokenFromStorage = () => {
+    return localStorage.getItem("token");
+}
