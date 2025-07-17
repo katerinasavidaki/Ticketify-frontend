@@ -3,6 +3,8 @@ import {AuthProvider} from "@/context/AuthProvider.tsx";
 import {Toaster} from "sonner";
 import RouterLayout from "@/components/RouterLayout.tsx";
 import HomePage from "@/pages/HomePage.tsx";
+import RegisterPage from "@/pages/RegisterPage.tsx";
+import LoginPage from "@/pages/LoginPage.tsx";
 
 
 function App() {
@@ -14,6 +16,8 @@ function App() {
             <Routes>
                 <Route element={<RouterLayout/>}>
                     <Route index element={<HomePage/>} />
+                    <Route path="register" element={<RegisterPage/>}/>
+                    <Route path="login" element={<LoginPage/>}/>
                 </Route>
             </Routes>
           </BrowserRouter>
